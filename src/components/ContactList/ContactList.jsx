@@ -16,31 +16,29 @@ function ContactList({ contacts, filter, onDeleteContact }) {
       <ContactListContainer>
         {filter?.length === 0 && contacts.length === 0 ? (
           <Headline>You have not contacts saved</Headline>
+        ) : filter?.length !== 0 && contacts.length === 0 ? (
+          <h1> Can not find the Contact</h1>
         ) : (
           <Headline>Contacts</Headline>
         )}
 
-        {filter?.length !== 0 && contacts.length === 0 ? (
-          <h1> Can not find the Contact</h1>
-        ) : (
-          contacts.map((contact) => (
-            <ContactItem key={contact.id}>
-              <ContactItemContainer>
-                <ItemName>
-                  {contact.name}
-                  {': '}
-                  {contact.number}
-                </ItemName>
-                <DeleteBtn
-                  onClick={() => onDeleteContact(contact.id)}
-                  type="button"
-                >
-                  Delete
-                </DeleteBtn>
-              </ContactItemContainer>
-            </ContactItem>
-          ))
-        )}
+        {contacts.map((contact) => (
+          <ContactItem key={contact.id}>
+            <ContactItemContainer>
+              <ItemName>
+                {contact.name}
+                {': '}
+                {contact.number}
+              </ItemName>
+              <DeleteBtn
+                onClick={() => onDeleteContact(contact.id)}
+                type="button"
+              >
+                Delete
+              </DeleteBtn>
+            </ContactItemContainer>
+          </ContactItem>
+        ))}
       </ContactListContainer>
     </>
   )
